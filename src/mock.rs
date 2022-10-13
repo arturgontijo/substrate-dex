@@ -15,10 +15,10 @@ frame_support::construct_runtime!(
         NodeBlock = Block,
         UncheckedExtrinsic = UncheckedExtrinsic,
     {
-        System: frame_system::{Pallet, Call, Config, Storage, Event<T>},
-        Balances: pallet_balances::{Pallet, Call, Storage, Config<T>, Event<T>},
-        Assets: pallet_assets::{Pallet, Call, Storage, Config<T>, Event<T>},
-        Dex: dex::{Pallet, Call, Storage, Event<T>},
+        System: frame_system::{Pallet, RuntimeCall, Config, Storage, RuntimeEvent<T>},
+        Balances: pallet_balances::{Pallet, RuntimeCall, Storage, Config<T>, RuntimeEvent<T>},
+        Assets: pallet_assets::{Pallet, RuntimeCall, Storage, Config<T>, RuntimeEvent<T>},
+        Dex: dex::{Pallet, RuntimeCall, Storage, RuntimeEvent<T>},
     }
 );
 
@@ -26,8 +26,8 @@ impl frame_system::Config for Test {
     type BaseCallFilter = Everything;
     type BlockWeights = ();
     type BlockLength = ();
-    type Origin = Origin;
-    type Call = Call;
+    type RuntimeOrigin = RuntimeOrigin;
+    type RuntimeCall = RuntimeCall;
     type Index = u32;
     type BlockNumber = u32;
     type Hash = H256;
@@ -35,7 +35,7 @@ impl frame_system::Config for Test {
     type AccountId = u64;
     type Lookup = IdentityLookup<Self::AccountId>;
     type Header = Header;
-    type Event = Event;
+    type RuntimeEvent = RuntimeEvent;
     type BlockHashCount = ConstU32<250>;
     type DbWeight = ();
     type Version = ();
@@ -52,7 +52,7 @@ impl frame_system::Config for Test {
 impl pallet_balances::Config for Test {
     type Balance = u128;
     type DustRemoval = ();
-    type Event = Event;
+    type RuntimeEvent = RuntimeEvent;
     type ExistentialDeposit = ConstU128<1>;
     type AccountStore = System;
     type WeightInfo = ();
@@ -62,7 +62,7 @@ impl pallet_balances::Config for Test {
 }
 
 impl pallet_assets::Config for Test {
-    type Event = Event;
+    type RuntimeEvent = RuntimeEvent;
     type Balance = u128;
     type AssetId = u32;
     type Currency = Balances;
@@ -84,7 +84,7 @@ parameter_types! {
 
 impl dex::Config for Test {
     type PalletId = DexPalletId;
-    type Event = Event;
+    type RuntimeEvent = RuntimeEvent;
     type Currency = Balances;
     type AssetBalance = u128;
     type AssetToCurrencyBalance = Identity;
