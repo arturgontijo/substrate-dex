@@ -290,7 +290,7 @@ Add `pallet-dex`, the RPC runtime API, and `pallet-assets` (required for handlin
 [dependencies.pallet-assets]
 version = "4.0.0-dev"
 default-features = false
-git = "https://github.com/arturgontijo/substrate.git"
+git = "https://github.com/paritytech/substrate.git"
 branch = "master"
 
 [dependencies.pallet-dex]
